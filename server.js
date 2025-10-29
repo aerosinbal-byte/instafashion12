@@ -9,7 +9,9 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://instafashion1234.netlify.app'
+}));
 app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 
@@ -45,6 +47,12 @@ app.use('/api/settings', settingsRoutes);
 
 const deliveryZonesRouter = require('./routes/deliveryZones');
 app.use('/api/delivery-zones', deliveryZonesRouter);
+
+const hotDealsRouter = require('./routes/hotDeals');
+app.use('/api/hot-deals', hotDealsRouter);
+
+const trendingCategoriesRouter = require('./routes/trendingCategories');
+app.use('/api/trending-categories', trendingCategoriesRouter);
 
 const PORT = process.env.PORT || 5000;
 
